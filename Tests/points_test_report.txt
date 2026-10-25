@@ -1,0 +1,18 @@
+==================================================================================== test session starts =====================================================================================
+platform win32 -- Python 3.14.3, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\kiera\AppData\Local\Programs\Python\Python314\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\kiera\Pictures\MMA 3001 - New
+collecting ... collected 10 items
+
+Tests/points_tests.py::test_update_depth_handles_an_empty_point_list PASSED                                                                                                             [ 10%]
+Tests/points_tests.py::test_update_depth_scales_normalised_depth[0.25-4.0-1.0] PASSED                                                                                                   [ 20%]
+Tests/points_tests.py::test_update_depth_scales_normalised_depth[0.5-4.0-2.0] PASSED                                                                                                    [ 30%]
+Tests/points_tests.py::test_update_depth_scales_normalised_depth[1.0-3.0-3.0] PASSED                                                                                                    [ 40%]
+Tests/points_tests.py::test_update_depth_does_not_modify_the_input_points PASSED                                                                                                        [ 50%]
+Tests/points_tests.py::test_update_depth_keeps_existing_values_when_depth_is_invalid[0.0] PASSED                                                                                        [ 60%]
+Tests/points_tests.py::test_update_depth_keeps_existing_values_when_depth_is_invalid[nan] PASSED                                                                                        [ 70%]
+Tests/points_tests.py::test_update_depth_keeps_a_single_point_unchanged PASSED                                                                                                          [ 80%]
+Tests/points_tests.py::test_update_depth_ignores_points_outside_the_depth_image PASSED                                                                                                  [ 90%]
+Tests/points_tests.py::test_update_depth_preserves_xy_coordinates_and_radii PASSED                                                                                                      [100%]
+
+===================================================================================== 10 passed in 0.03s =====================================================================================
