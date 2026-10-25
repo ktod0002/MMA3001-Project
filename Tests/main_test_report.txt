@@ -1,0 +1,18 @@
+==================================================================================== test session starts =====================================================================================
+platform win32 -- Python 3.14.3, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\kiera\AppData\Local\Programs\Python\Python314\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\kiera\Pictures\MMA 3001 - New
+collecting ... collected 10 items
+
+Tests/main_tests.py::test_center_crop_returns_the_requested_shape[image_shape0-4-4-expected_shape0] PASSED                                                                              [ 10%]
+Tests/main_tests.py::test_center_crop_returns_the_requested_shape[image_shape1-6-8-expected_shape1] PASSED                                                                              [ 20%]
+Tests/main_tests.py::test_center_crop_returns_the_requested_shape[image_shape2-5-5-expected_shape2] PASSED                                                                              [ 30%]
+Tests/main_tests.py::test_center_crop_selects_the_middle_of_the_image PASSED                                                                                                            [ 40%]
+Tests/main_tests.py::test_center_crop_rejects_a_crop_larger_than_the_image PASSED                                                                                                       [ 50%]
+Tests/main_tests.py::test_load_sample_rejects_incorrect_image_sizes PASSED                                                                                                              [ 60%]
+Tests/main_tests.py::test_load_sample_raises_for_missing_files PASSED                                                                                                                   [ 70%]
+Tests/main_tests.py::test_predict_sample_runs_generation_export_and_display PASSED                                                                                                      [ 80%]
+Tests/main_tests.py::test_predict_sample_raises_when_no_matching_sample_exists PASSED                                                                                                   [ 90%]
+Tests/main_tests.py::test_main_uses_the_default_dataset_and_sample PASSED                                                                                                               [100%]
+
+===================================================================================== 10 passed in 0.11s =====================================================================================

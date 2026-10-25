@@ -1,0 +1,40 @@
+==================================================================================== test session starts =====================================================================================
+platform win32 -- Python 3.14.3, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\kiera\AppData\Local\Programs\Python\Python314\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\kiera\Pictures\MMA 3001 - New
+collecting ... collected 32 items
+
+Tests/modelling_tests.py::test_tapered_cylinder_creates_mesh_between_vertical_points PASSED                                                                                             [  3%]
+Tests/modelling_tests.py::test_tapered_cylinder_rejects_identical_points PASSED                                                                                                         [  6%]
+Tests/modelling_tests.py::test_tapered_cylinder_rejects_non_positive_radii[0.0-1.0] PASSED                                                                                              [  9%]
+Tests/modelling_tests.py::test_tapered_cylinder_rejects_non_positive_radii[-1.0-1.0] PASSED                                                                                             [ 12%]
+Tests/modelling_tests.py::test_tapered_cylinder_rejects_non_positive_radii[1.0-0.0] PASSED                                                                                              [ 15%]
+Tests/modelling_tests.py::test_tapered_cylinder_rejects_non_positive_radii[1.0--1.0] PASSED                                                                                             [ 18%]
+Tests/modelling_tests.py::test_minimum_spanning_tree_handles_no_points PASSED                                                                                                           [ 21%]
+Tests/modelling_tests.py::test_minimum_spanning_tree_handles_one_point PASSED                                                                                                           [ 25%]
+Tests/modelling_tests.py::test_minimum_spanning_tree_connects_nearby_line_points PASSED                                                                                                 [ 28%]
+Tests/modelling_tests.py::test_minimum_spanning_tree_leaves_distant_points_isolated PASSED                                                                                              [ 31%]
+Tests/modelling_tests.py::test_minimum_spanning_tree_connects_duplicate_positions PASSED                                                                                                [ 34%]
+Tests/modelling_tests.py::test_trace_branch_paths_handles_isolated_points PASSED                                                                                                        [ 37%]
+Tests/modelling_tests.py::test_trace_branch_paths_follows_a_straight_line PASSED                                                                                                        [ 40%]
+Tests/modelling_tests.py::test_trace_branch_paths_splits_at_a_junction PASSED                                                                                                           [ 43%]
+Tests/modelling_tests.py::test_sample_path_keeps_regular_points_and_the_end[path0-3-expected0] PASSED                                                                                   [ 46%]
+Tests/modelling_tests.py::test_sample_path_keeps_regular_points_and_the_end[path1-2-expected1] PASSED                                                                                   [ 50%]
+Tests/modelling_tests.py::test_sample_path_keeps_regular_points_and_the_end[path2-2-expected2] PASSED                                                                                   [ 53%]
+Tests/modelling_tests.py::test_sample_path_keeps_regular_points_and_the_end[path3-10-expected3] PASSED                                                                                  [ 56%]
+Tests/modelling_tests.py::test_create_model_rejects_invalid_options[kwargs0] PASSED                                                                                                     [ 59%]
+Tests/modelling_tests.py::test_create_model_rejects_invalid_options[kwargs1] PASSED                                                                                                     [ 62%]
+Tests/modelling_tests.py::test_create_model_rejects_invalid_options[kwargs2] PASSED                                                                                                     [ 65%]
+Tests/modelling_tests.py::test_create_model_rejects_invalid_options[kwargs3] PASSED                                                                                                     [ 68%]
+Tests/modelling_tests.py::test_create_model_rejects_invalid_options[kwargs4] PASSED                                                                                                     [ 71%]
+Tests/modelling_tests.py::test_create_model_rejects_invalid_options[kwargs5] PASSED                                                                                                     [ 75%]
+Tests/modelling_tests.py::test_create_model_rejects_invalid_points[points0] PASSED                                                                                                      [ 78%]
+Tests/modelling_tests.py::test_create_model_rejects_invalid_points[points1] PASSED                                                                                                      [ 81%]
+Tests/modelling_tests.py::test_create_model_rejects_invalid_points[points2] PASSED                                                                                                      [ 84%]
+Tests/modelling_tests.py::test_create_model_rejects_invalid_points[points3] PASSED                                                                                                      [ 87%]
+Tests/modelling_tests.py::test_create_model_rejects_invalid_points[points4] PASSED                                                                                                      [ 90%]
+Tests/modelling_tests.py::test_create_model_places_an_isolated_point_correctly PASSED                                                                                                   [ 93%]
+Tests/modelling_tests.py::test_create_model_reports_boolean_union_failure PASSED                                                                                                        [ 96%]
+Tests/modelling_tests.py::test_create_sphere_model_translates_and_decimates PASSED                                                                                                      [100%]
+
+===================================================================================== 32 passed in 0.05s =====================================================================================
