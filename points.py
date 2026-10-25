@@ -119,6 +119,7 @@ def update_depth(points, depth_image, max_depth=4.0, sections=8, join_points=4):
 
         return indices
 
+    # Fit each of the individual branches / trunk
     trunk = fit(trunk)
     left = fit(left)
     right = fit(right)
@@ -243,7 +244,8 @@ def generate_points(image, depth):
                 new_points.append((middle, row, 0, radius))
                 start = "NaN"
 
-        min = 1000
+        # Exclude outliers in the data
+        min = float('inf')
         for point in new_points:
             if abs(point[0] - old_middle) < min:
                 min = abs(point[0] - old_middle)
