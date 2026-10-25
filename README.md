@@ -14,7 +14,7 @@ The original method used overlapping spheres to generate the model. This was lat
 
 Processing time: Reduced from 1.1269 s to 0.6735 s, a 40% reduction overall.
 
-Peak memory usage: Reduced from 297.61 MB to 216.66 MB, a 27% reduction.
+Peak memory usage: Reduced from 143.86 MB to 47.06 MB, a 73% reduction.
 
 Reconstruction time: Approximately 55% faster when excluding the neural network prediction time.
 
