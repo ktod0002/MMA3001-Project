@@ -37,8 +37,8 @@ def load_sample(rgb_path, depth_path):
     """Load and preprocess paired RGB and depth images.
 
     Args:
-        rgb_path: Path to the RGB PNG image.
-        depth_path: Path to the depth PNG image.
+        rgb_path: Path to the RGB PNG image. "640 x 480 px"
+        depth_path: Path to the depth PNG image. "640 x 480 px"
 
     Returns:
         A tuple containing:
@@ -55,6 +55,10 @@ def load_sample(rgb_path, depth_path):
     depth = tf.io.read_file(depth_path)
     depth = tf.image.decode_png(depth, channels=1)
 
+    # Reject wrong shape size
+    if tuple(rgb.shape[:2]) != (480, 640) or tuple(depth.shape[:2]) != (480, 640):
+        raise ValueError("RGB and depth images must both be 640x480 pixels")
+    
     # Preprocess the data
     rgb = center_crop(rgb, 480, 480)
     depth = center_crop(depth, 480, 480)
