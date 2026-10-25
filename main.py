@@ -5,6 +5,18 @@ from points import generate_points
 from modelling import create_model
 
 def center_crop(image, crop_height, crop_width):
+    """Crop an image around its center to the specified dimensions.
+
+    Args:
+        image: The input image tensor with shape
+            "(height, width, channels)".
+        crop_height: The height of the cropped image in pixels.
+        crop_width: The width of the cropped image in pixels.
+
+    Returns:
+        The center-cropped image tensor with shape
+        "(crop_height, crop_width, channels)".
+    """
     shape = tf.shape(image)
 
     height = shape[0]
@@ -22,6 +34,19 @@ def center_crop(image, crop_height, crop_width):
     )
 
 def load_sample(rgb_path, depth_path):
+    """Load and preprocess paired RGB and depth images.
+
+    Args:
+        rgb_path: Path to the RGB PNG image.
+        depth_path: Path to the depth PNG image.
+
+    Returns:
+        A tuple containing:
+            image: A batched four-channel tensor combining the RGB and depth
+                images, with shape "(1, 256, 256, 4)".
+            rgb: The normalized RGB tensor with shape "(256, 256, 3)".
+            depth: The normalized depth tensor with shape "(256, 256, 1)".
+    """
     # Read RGB
     rgb = tf.io.read_file(rgb_path)
     rgb = tf.image.decode_png(rgb, channels=3)
@@ -30,15 +55,13 @@ def load_sample(rgb_path, depth_path):
     depth = tf.io.read_file(depth_path)
     depth = tf.image.decode_png(depth, channels=1)
 
-    # Center crop
+    # Preprocess the data
     rgb = center_crop(rgb, 480, 480)
     depth = center_crop(depth, 480, 480)
 
-    # Resize
     rgb = tf.image.resize(rgb, (256, 256))
     depth = tf.image.resize(depth, (256, 256))
 
-    # Normalise
     rgb = tf.cast(rgb, tf.float32) / 255.0
     depth = tf.cast(depth, tf.float32) / 255.0
 
@@ -48,28 +71,57 @@ def load_sample(rgb_path, depth_path):
 
     return image, rgb, depth
 
+def predict_sample(folder, id):
+    """Generate and display a 3D tree model from one RGB-D sample.
 
+    Finds the RGB and depth images matching the given sample ID, loads them,
+    displays the RGB image, generates the tree points, and shows the resulting
+    3D model.
 
-folder = Path("Dataset")
-samples = []
+    Args:
+        folder: Path to the folder containing the RGB and depth images.
+        id: Sample ID used to find the matching image files.
 
-for rgb in folder.glob("R01N01*Summer_RGB*.png"):
-    # R01N01_rgb_182736.png -> R01N01
-    index = rgb.name.split("_")[0]
+    Returns:
+        None.
+    """
+    samples = []
 
-    d = list(folder.glob(f"{index}*Summer_D*.png"))
+    for rgb in folder.glob(f"{id}*Summer_RGB*.png"):
+        # Extract the sample code from the filename.
+        index = rgb.name.split("_")[0]
+        d = list(folder.glob(f"{index}*Summer_D*.png"))
 
-    if len(d) == 1:
-        samples.append((str(rgb), str(d[0])))
+        # Ensure correct number of arguments.
+        if len(d) == 1:
+            samples.append((str(rgb), str(d[0])))
 
+    image, rgb, depth = load_sample(samples[0][0], samples[0][1])
 
-image, rgb, depth = load_sample(samples[0][0], samples[0][1])
+    # Show original image for validation
+    plt.imshow(rgb)
+    plt.show(block=False)
+    plt.pause(0.5)
 
-plt.imshow(rgb)
-plt.show(block = False)
-plt.pause(0.1)
+    # Generate and output the tree
+    depth = image[0, :, :, 3].numpy()
+    points_list = generate_points(image, depth)
+    model = create_model(points_list)
+    model.export(f"{id}_tree_model.stl")
+    model.show()
 
-depth = image[0, :, :, 3].numpy()
-points_list = generate_points(image, depth)
-model = create_model(points_list)
-model.show()
+def main():
+    """Runs the main program.
+        Args:
+            None
+        
+        Returns:
+            None
+    """
+
+    # Example use case. The robot should contain it's images following the databases naming code.
+    folder = Path("Dataset")
+    predict_sample(folder, "R01N01")
+
+if __name__ == '__main__':
+    main()
